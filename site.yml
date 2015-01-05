@@ -1,0 +1,6 @@
+
+---
+
+# file: site.yml
+
+- include: eos.yml

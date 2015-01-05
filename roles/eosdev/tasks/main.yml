@@ -1,0 +1,9 @@
+
+---
+
+# file: roles/eosdev/tasks/main.yml
+
+- include: git.yml tags=git
+
+- include: emacs.yml tags=emacs
+

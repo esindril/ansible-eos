@@ -7,3 +7,4 @@
 
 - include: emacs.yml tags=emacs
 
+- include: xrootd_dep.yml tags=xrootd

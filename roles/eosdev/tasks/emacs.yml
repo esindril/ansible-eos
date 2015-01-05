@@ -3,7 +3,7 @@
 # file: roles/eosdev/tasks/emacs.yml
 
 - name: install emacs
-  yum: pkg=emacs state=installed
+  yum: pkg=emacs state=present
 
 - file: path="/home/{{ user_name }}/.emacs.d/"
         owner="{{ user_name }}" group="{{ grp_name }}"

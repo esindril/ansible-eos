@@ -3,10 +3,10 @@
 # file: roles/eosdev/tasks/git.yml
 
 - name: install git
-  yum: pkg=git state=installed
+  yum: pkg=git state=present
 
 - name: install gitk
-  yum: pkg=gitk state=installed
+  yum: pkg=gitk state=present
 
 # Add the global git configuration file
 

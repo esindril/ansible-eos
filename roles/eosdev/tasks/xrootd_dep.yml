@@ -1,0 +1,14 @@
+---
+
+# file: roles/eosdev/tasks/xrootd_dep.yml
+
+- name: install xrootd dependencies
+  yum: pkg={{ item }} state=present
+  with_items:
+    - rpm-build
+    - python-devel
+    - readline-devel
+    - zlib-devel,zlib-static
+    - fuse,fuse-devel
+    - openssl-devel,openssl-static
+    - doxygen,graphviz,libxml2-devel,selinux-policy-devel

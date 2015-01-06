@@ -1,0 +1,20 @@
+---
+
+# file: roles/eosdev/tasks/eos_dep.yml
+
+- name: install EOS dependencies
+  yum: pkg={{ item }} state=present
+  with_items:
+    - xfsprogs-devel
+    - e2fsprogs-devel
+    - openldap-devel
+    - ncurses-static
+    - libattr-devel
+    - sparsehash-devel
+    - zeromq3,zeromq3-devel
+    - czmq,czmq-devel
+    - uuid-devel,libuuid-devel
+    - leveldb,leveldb-devel
+    - cppunit,cppunit-devel
+    - protobuf,protobuf-devel
+    - libmicrohttpd,libmicrohttpd-devel

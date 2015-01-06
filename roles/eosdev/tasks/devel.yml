@@ -1,0 +1,29 @@
+---
+
+# file: roles/eosdev/tasks/devel.yml
+
+- name: install packages for development
+  yum: pkg={{ item }} state=present
+  with_items:
+    - screen
+    - docker
+    - cmake
+    - valgrind
+    - gcc,gcc-c++
+    - krb5-workstation
+
+- name: install GUI support and packages that need GUI
+  yum: pkg={{ item }} state=present
+  with_items:
+    - gdm
+    - cmake-gui
+  tags:
+    - gui
+
+- name: install Globus support
+  yum: pkg={{ item }} state=present
+  with_items:
+    - globus-gsi-cert-utils
+    - globus-gsi-cert-utils-progs
+  tags:
+    - globus

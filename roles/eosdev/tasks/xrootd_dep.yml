@@ -2,7 +2,7 @@
 
 # file: roles/eosdev/tasks/xrootd_dep.yml
 
-- name: install xrootd dependencies
+- name: install XRootD dependencies
   yum: pkg={{ item }} state=present
   with_items:
     - rpm-build

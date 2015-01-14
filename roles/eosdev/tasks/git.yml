@@ -3,12 +3,12 @@
 # file: roles/eosdev/tasks/git.yml
 
 - name: install git
-  yum: pkg=git state=present
-
-- name: install gitk
-  yum: pkg=gitk state=present
+  yum: pkg={{ item }} state=present
+  with_items:
+    - git
+    - gitk
 
 # Add the global git configuration file
-
-- copy: src=gitconfig dest="/home/{{ user_name }}/.gitconfig"
+- name: configure git
+  copy: src=gitconfig dest="/home/{{ user_name }}/.gitconfig"
         owner="{{ user_name }}" group="{{ grp_name }}" mode=0644

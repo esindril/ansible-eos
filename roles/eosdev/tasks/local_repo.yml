@@ -1,0 +1,34 @@
+---
+
+# file: roles/eosdev/tasks/local_repo.yml
+
+- name: install createrepo
+  yum: pkg=createrepo state=present
+
+# Create directory for local repository and helper scripts
+- file: path="{{ item }}"
+        owner="{{ user_name }}" group="{{ grp_name }}"
+        mode=0755 state=directory
+  with_items:
+    - "{{ localrepo_dir }}"
+    - "{{ scripts_dir }}"
+
+# Add local repository to the list of repositories
+- template: src=localrepo.repo.j2 dest=/etc/yum.repos.d/localrepo.repo
+            owner=root group=root mode=0644
+
+# Install scripts to push the XRootD and EOS rpms to the local repository
+- template: src=fetch-xrootd-rpms.sh.j2 dest="{{ scripts_dir }}/fetch-xrootd-rpms.sh"
+            owner="{{ user_name }}" group="{{ grp_name }}" mode=0755
+
+- template: src=fetch-eos-rpms.sh.j2 dest="{{ scripts_dir }}/fetch-eos-rpms.sh"
+            owner="{{ user_name }}" group="{{ grp_name }}" mode=0755
+
+# Add scripts to update the XRootD and EOS rpms to the latest version
+- template: src=update-xrootd-rpms.sh.j2
+            dest="{{ scripts_dir }}/update-xrootd-rpms.sh"
+            owner="{{ user_name }}" group="{{ grp_name }}" mode=755
+
+- template: src=update-eos-rpms.sh.j2
+            dest="{{ scripts_dir }}/update-eos-rpms.sh.j2"
+            owner="{{ user_name }}" group="{{ grp_name }}" mode=755

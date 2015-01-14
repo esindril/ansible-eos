@@ -1,10 +1,11 @@
-
 ---
 
 # file: roles/eosdev/tasks/main.yml
 
+- include: screen.yml tags=devel
 - include: devel.yml tags=devel
 - include: git.yml tags=git
 - include: emacs.yml tags=emacs
 - include: xrootd_dep.yml tags=xrootd
 - include: eos_dep.yml tags=eos
+- include: local_repo.yml tags=repo

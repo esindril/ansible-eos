@@ -1,0 +1,21 @@
+---
+
+# file: roles/eosdev/vars/main.yml
+
+# Location of XRootD source code
+xrootd_src_dir: /mnt/Code/xrootd
+
+# Location of EOS source code
+eos_src_dir: /mnt/Code/eos
+
+# Location of local repository used for XRootD and EOS
+localrepo_dir: /mnt/Code/localrepo
+
+# Location of helper scripts
+scripts_dir: /mnt/Code/Scripts
+
+# Path to the rpm buildroot
+buildroot_dir: "/home/{{ user_name }}/rpmbuild"
+
+# Local YUM repository name
+localrepo_name: localrepo

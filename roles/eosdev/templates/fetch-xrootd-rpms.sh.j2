@@ -1,0 +1,25 @@
+#!/bin/bash
+
+#-------------------------------------------------------------------------------
+# Script that build XRootD and adds it to the local repository
+#-------------------------------------------------------------------------------
+
+# Delete left-over XRootD source rpms and create the new one
+cd {{ xrootd_src_dir }}/packaging/
+rm -rf xrootd-*.src.rpm
+sh makesrpm.sh
+
+# Delete left-over XRootD rpms built previously
+rm -rf {{ buildroot_dir }}/RPMS/noarch/xrootd-*
+rm -rf {{ buildroot_dir }}/RPMS/x86_64/xrootd-*
+
+# Rebuild the XRootD rpms
+rpmbuild --rebuild xrootd*.src.rpm
+
+# Add the new packages to the local repository
+cp {{ buildroot_dir }}/RPMS/noarch/xrootd-* {{ localrepo_dir }}/
+cp {{ buildroot_dir }}/RPMS/x86_64/xrootd-* {{ localrepo_dir }}/
+cd {{ localrepo_dir }}
+
+# Rebuild repository
+/usr/bin/createrepo {{ localrepo_dir }}/

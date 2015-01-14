@@ -5,12 +5,12 @@
 - name: install packages for development
   yum: pkg={{ item }} state=present
   with_items:
-    - screen
     - docker
     - cmake
     - valgrind
     - gcc,gcc-c++
     - krb5-workstation
+    - pylint
 
 - name: install GUI support and packages that need GUI
   yum: pkg={{ item }} state=present
@@ -27,3 +27,8 @@
     - globus-gsi-cert-utils-progs
   tags:
     - globus
+
+# Add the global pylintrc configuration file
+- name: configure pylintrc
+  copy: src=pylintrc dest="/home/{{ user_name }}/.pylintrc"
+        owner="{{ user_name }}" group="{{ grp_name }}" mode=0644

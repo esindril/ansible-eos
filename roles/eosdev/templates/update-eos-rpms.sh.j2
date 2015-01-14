@@ -1,0 +1,8 @@
+#!/bin/bash
+
+#-------------------------------------------------------------------------------
+# Script that installs the latest EOS from the local repository
+#-------------------------------------------------------------------------------
+
+/usr/bin/yum --disablerepo="*" --enablerepo="{{ localrepo_name }}" install -y \
+eos-server eos-client eos-debuginfo eos-testkeytab eos-archive eos-fuse

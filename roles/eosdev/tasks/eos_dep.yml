@@ -12,7 +12,6 @@
     - libattr-devel
     - sparsehash-devel
     - zeromq3,zeromq3-devel
-    - czmq,czmq-devel
     - uuid-devel,libuuid-devel
     - leveldb,leveldb-devel
     - cppunit,cppunit-devel

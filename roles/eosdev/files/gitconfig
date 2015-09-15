@@ -5,5 +5,8 @@
 [color]
   ui = true
 
+[branch]
+  autosetuprebase = always
+
 [core]
   editor = emacs -nw

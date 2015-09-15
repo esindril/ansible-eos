@@ -1,2 +1,2 @@
 [all]
-esdss001
+localhost ansible_connection=local

@@ -2,6 +2,17 @@
 
 # file: roles/eosdev/tasks/eos_dep.yml
 
+# Create directory which contains EOS specific scripts
+- file: path="{{ item }}"
+        owner="{{ user_name }}" group="{{ grp_name }}"
+        mode=0755 state=directory
+  with_items:
+    - "{{ scripts_dir }}"
+
+- name: add runNewEos.sh script
+  copy: src=runNewEos.sh dest="{{ scripts_dir }}/runNewEos.sh"
+        owner="{{ user_name }}" group="{{ grp_name }}" mode=0755
+
 - name: install EOS dependencies
   yum: pkg={{ item }} state=present
   with_items:
@@ -9,6 +20,7 @@
     - e2fsprogs-devel
     - openldap-devel
     - ncurses-static
+    - curl-devel
     - libattr-devel
     - sparsehash-devel
     - zeromq3,zeromq3-devel

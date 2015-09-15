@@ -1,0 +1,10 @@
+---
+
+# file roles/eosdev/tasks/redis.yml
+
+- name: install Redis dependencies
+  yum: pkg={{ item }} state=present
+  with_items:
+    - redis
+    - hiredis
+    - hiredis-devel

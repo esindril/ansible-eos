@@ -5,26 +5,25 @@
 - name: install packages for development
   yum: pkg={{ item }} state=present
   with_items:
+    - tmux
     - docker
     - cmake
+    - cmake-gui
     - valgrind
     - gcc,gcc-c++
     - krb5-workstation
     - pylint
-    - ceph
-    - ceph-common
-    - ceph-devel
     - gtest,gtest-devel
     - python-zmq,python-daemon
 
-- name: install GUI support and packages that need GUI
+- name: install ceph packages
   yum: pkg={{ item }} state=present
   with_items:
-    - xorg-x11-server-Xorg
-    - gdm
-    - cmake-gui
+    - ceph
+    - ceph-common
+    - ceph-devel
   tags:
-    - gui
+    - ceph
 
 - name: install Globus support
   yum: pkg={{ item }} state=present

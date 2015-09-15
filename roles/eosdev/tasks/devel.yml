@@ -5,7 +5,6 @@
 - name: install packages for development
   yum: pkg={{ item }} state=present
   with_items:
-    - tmux
     - docker
     - cmake
     - cmake-gui
@@ -15,6 +14,17 @@
     - pylint
     - gtest,gtest-devel
     - python-zmq,python-daemon
+
+- name: install tmux
+  yum: pkg=tmux state=present
+  tags:
+    - tmux
+
+- name: add tmux configuration file
+  copy: src=tmux.conf dest="/home/{{ user_name }}/.tmux.conf"
+	ownser="{{ user_name }}" group="{{ group_name }}" mode=0644
+  tags:
+    - tmux
 
 - name: install ceph packages
   yum: pkg={{ item }} state=present
@@ -36,4 +46,4 @@
 # Add the global pylintrc configuration file
 - name: configure pylintrc
   copy: src=pylintrc dest="/home/{{ user_name }}/.pylintrc"
-        owner="{{ user_name }}" group="{{ grp_name }}" mode=0644
+	owner="{{ user_name }}" group="{{ grp_name }}" mode=0644

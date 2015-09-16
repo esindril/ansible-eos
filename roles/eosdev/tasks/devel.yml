@@ -47,3 +47,7 @@
 - name: configure pylintrc
   copy: src=pylintrc dest="/home/{{ user_name }}/.pylintrc"
         owner="{{ user_name }}" group="{{ grp_name }}" mode=0644
+
+- name: customize the .bashrc file
+  copy: src=bashrc.conf dest="/home/{{ user_name }}/.bashrc"
+        owner="{{ user_name }}" group="{{ grp_name }}" mode=0644

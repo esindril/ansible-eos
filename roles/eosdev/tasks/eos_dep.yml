@@ -22,6 +22,7 @@
     - ncurses-static
     - curl-devel
     - libattr-devel
+    - libcurl-devel
     - sparsehash-devel
     - zeromq3,zeromq3-devel
     - uuid-devel,libuuid-devel

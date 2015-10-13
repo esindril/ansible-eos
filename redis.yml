@@ -1,0 +1,9 @@
+---
+
+# file: redis.yml
+
+- hosts: all
+  remote_user: esindril
+  sudo: yes
+  roles:
+    - {role: redis, tags: redis}

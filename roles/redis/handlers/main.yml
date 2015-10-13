@@ -1,0 +1,14 @@
+---
+
+#file role/redis/handlers/main.yml
+
+- name: systemd daemon reload
+  command: systemctl daemon-reload
+
+- name: restart redis
+  service: name="redis@{{ item.name }}" state=restarted enabled=yes
+  with_items: "{{ instances }}"
+
+- name: restart nutcracker
+  service: name=nutcracker state=restarted
+

@@ -1,0 +1,5 @@
+
+# Use the same user as the Redis service
+USER="{{ nutcracker_user }}"
+# Options passed to the daemon
+OPTIONS="-d -c /etc/nutcracker/nutcracker.yml -o {{ nutcracker_logfile }} -v {{ nutcracker_loglevel }}"

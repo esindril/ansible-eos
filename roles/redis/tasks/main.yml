@@ -1,0 +1,40 @@
+---
+
+# file: roles/redis/tasks/main.yml
+
+- name: install Redis and dependencies
+  yum: pkg={{ item }} state=present
+  with_items:
+    - redis
+    - hiredis
+    - hiredis-devel
+
+- name: Add Redis systemd script for multiple instances
+  copy: src=redis@.service dest="/usr/lib/systemd/system/redis@.service"
+        owner=root group=root mode=0644
+
+- name: Configure Redis instances
+  template: src=redis.conf.j2 dest="/etc/redis-{{ item.name }}.conf"
+  with_items: "{{ instances }}"
+  notify:
+    - systemd daemon reload
+    - restart redis
+
+- name: Create directory for nutcracker configuration
+  file: path=/etc/nutcracker/ owner=root group=root
+        mode=0755 state=directory
+  tags: nutcracker
+
+- name: Add nutcracker sysconfig file
+  template: src=nutcracker.sysconfig.j2 dest=/etc/sysconfig/nutcracker
+            owner=root group=root mode=0644
+  notify:
+    - restart nutcracker
+  tags: nutcracker
+
+- name: Add nutcracker configuration file
+  template: src=nutcracker.yml.j2 dest="/etc/nutcracker/nutcracker.yml"
+            owner=root group=root mode=0644
+  notify:
+    - restart nutcracker
+  tags: nutcracker

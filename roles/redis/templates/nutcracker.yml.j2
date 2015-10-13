@@ -1,0 +1,10 @@
+default:
+  listen: {{ nutcracker_host}}:{{ nutcracker_port }}
+  hash: fnv1a_64
+  auto_eject_hosts: true
+  timeout: 400
+  redis: true
+  servers:
+  {% for item in instances %}
+  - {{ item.host }}:{{ item.port }}:{{ item.weight }} {{ item.name }}
+  {% endfor %}

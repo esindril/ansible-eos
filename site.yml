@@ -4,3 +4,4 @@
 # file: site.yml
 
 - include: eos.yml
+- include: redis.yml

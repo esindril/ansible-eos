@@ -8,4 +8,3 @@
 - include: xrootd_dep.yml tags=xrootd
 - include: eos_dep.yml tags=eos
 - include: local_repo.yml tags=repo
-- include: redis.yml tags=redis

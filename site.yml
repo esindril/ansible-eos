@@ -3,5 +3,11 @@
 
 # file: site.yml
 
-- include: eos.yml
-- include: redis.yml
+- hosts: all
+  become_user: esindril
+  roles:
+    - env.role
+#    - xrootd.role    
+  vars:
+     user_name: esindril
+     grp_name: c3

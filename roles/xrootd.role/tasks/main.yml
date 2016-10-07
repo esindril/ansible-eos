@@ -9,7 +9,6 @@
     - xrootd-client
     - xrootd-client-devel
     - xrootd-client-libs
-    - xrootd-debuginfo
     - xrootd-devel
     - xrootd-doc
     - xrootd-fuse

@@ -34,3 +34,7 @@
   template: src=update-eos-rpms.sh.j2
             dest="{{ scripts_dir }}/update-eos-rpms.sh.j2"
             owner="{{ user_name }}" group="{{ grp_name }}" mode=755
+
+- name: add runNewEos.sh script
+  copy: src=runNewEos.sh dest="{{ scripts_dir }}/runNewEos.sh"
+        owner="{{ user_name }}" group="{{ grp_name }}" mode=0755

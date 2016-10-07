@@ -1,2 +1,4 @@
 ---
 # tasks file for eos.role
+
+- include: eos_dep.yml

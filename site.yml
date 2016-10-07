@@ -4,10 +4,30 @@
 # file: site.yml
 
 - hosts: all
-  become_user: esindril
+  tags: environment
+  become: true
   roles:
     - env.role
-#    - xrootd.role    
   vars:
      user_name: esindril
      grp_name: c3
+
+- hosts: all
+  tags: xrootd
+  become: true
+  roles:
+    - xrootd.role
+  vars:
+     user_name: esindril
+     grp_name: c3
+
+- hosts: all
+  tags: eos
+  become: true
+  roles:
+    - eos.role
+  vars:
+     user_name: esindril
+     grp_name: c3
+
+

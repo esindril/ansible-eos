@@ -1,0 +1,10 @@
+---
+
+# file: tmux.yml
+
+- name: install tmux
+  yum: pkg=tmux state=present
+
+- name: add tmux configuration file
+  copy: src=tmux.conf dest="/home/{{ user_name }}/.tmux.conf"
+        owner="{{ user_name }}" group="{{ grp_name }}" mode=0644

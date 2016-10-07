@@ -1,0 +1,16 @@
+---
+
+# file: emacs.yml
+
+- name: install emacs
+  yum: pkg=emacs state=present
+
+- name: create emacs directory for additional packages 
+  file: path="/home/{{ user_name }}/.emacs.d/"
+        owner="{{ user_name }}" group="{{ grp_name }}"
+        mode=0755 state=directory
+
+- name: customize emacs configuration 
+  copy: src=emacs-init/init.el dest="/home/{{ user_name }}/.emacs"
+        owner="{{ user_name }}" group="{{ grp_name }}" mode=0644
+

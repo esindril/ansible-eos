@@ -1,0 +1,32 @@
+---
+
+# file: devel.yml
+
+- name: install packages for development
+  yum: pkg={{ item }} state=present
+  with_items:
+    - docker
+    - cmake
+    - cmake-gui
+    - valgrind
+    - gcc 
+    - gcc-c++
+    - krb5-workstation
+    - pylint
+    - gtest
+    - gtest-devel
+    - python-zmq
+    - python-daemon
+    - ccache
+    - ninja-build
+
+- name: install Globus support
+  yum: pkg={{ item }} state=present
+  with_items:
+    - globus-gsi-cert-utils
+    - globus-gsi-cert-utils-progs
+
+# Add the global pylintrc configuration file
+- name: configure pylintrc
+  copy: src=pylintrc dest="/home/{{ user_name }}/.pylintrc"
+        owner="{{ user_name }}" group="{{ grp_name }}" mode=0644

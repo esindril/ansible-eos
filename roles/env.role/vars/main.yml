@@ -1,0 +1,23 @@
+---
+# vars file for env.role
+
+# Base directory for the rest of the paths
+base_dir: "/home/{{ user_name }}"
+
+# Location of XRootD source code
+xrootd_src_dir: "{{ base_dir }}/Programs/xrootd"
+
+# Location of EOS source code
+eos_src_dir: "{{ base_dir }}/Programs/eos"
+
+# Location of local repository used for XRootD and EOS
+localrepo_dir: "{{ base_dir }}/Programs/localrepo"
+
+# Location of helper scripts
+scripts_dir: "{{ base_dir }}/Programs/Scripts"
+
+# Path to the rpm buildroot
+buildroot_dir: "/home/{{ user_name }}/rpmbuild"
+
+# Local YUM repository name
+localrepo_name: localrepo

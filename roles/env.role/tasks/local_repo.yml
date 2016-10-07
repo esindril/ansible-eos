@@ -1,0 +1,36 @@
+---
+
+# file: local_repo.yml
+
+- name: install createrepo
+  yum: pkg=createrepo state=present
+
+- name: create local repository directory
+  file: path="{{ item }}"
+        owner="{{ user_name }}" group="{{ grp_name }}"
+        mode=0755 state=directory
+  with_items:
+    - "{{ localrepo_dir }}"
+    - "{{ scripts_dir }}"
+
+- name: create local repository to the YUM repos
+  template: src=localrepo.repo.j2 dest=/etc/yum.repos.d/localrepo.repo
+            owner=root group=root mode=0644
+
+- name: script to push XRootD rpms to local repository
+  template: src=fetch-xrootd-rpms.sh.j2 dest="{{ scripts_dir }}/fetch-xrootd-rpms.sh"
+            owner="{{ user_name }}" group="{{ grp_name }}" mode=0755
+
+- name: script to push EOS rpms to local repository
+  template: src=fetch-eos-rpms.sh.j2 dest="{{ scripts_dir }}/fetch-eos-rpms.sh"
+            owner="{{ user_name }}" group="{{ grp_name }}" mode=0755
+
+- name: script to update XRootD rpms to latest version
+  template: src=update-xrootd-rpms.sh.j2
+            dest="{{ scripts_dir }}/update-xrootd-rpms.sh"
+            owner="{{ user_name }}" group="{{ grp_name }}" mode=755
+
+- name: script to update EOS rpms to latest version
+  template: src=update-eos-rpms.sh.j2
+            dest="{{ scripts_dir }}/update-eos-rpms.sh.j2"
+            owner="{{ user_name }}" group="{{ grp_name }}" mode=755

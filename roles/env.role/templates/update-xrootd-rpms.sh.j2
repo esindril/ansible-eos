@@ -1,0 +1,10 @@
+#!/bin/bash
+
+#-------------------------------------------------------------------------------
+# Script that installs the latest XRootD from the local repository
+#-------------------------------------------------------------------------------
+
+/usr/bin/yum --disablerepo="*" --enablerepo="{{ localrepo_name }}" install -y \
+xrootd-client xrootd-client-devel xrootd-client-libs xrootd-debuginfo \
+xrootd-devel xrootd-libs xrootd-private-devel.noarch xrootd-selinux.noarch \
+xrootd-server-devel xrootd-server-libs xrootd xrootd-server

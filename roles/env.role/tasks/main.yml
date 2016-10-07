@@ -1,0 +1,12 @@
+---
+# tasks file for env.role
+
+- name: customize the .bashrc file
+  copy: src=bashrc.conf dest="/home/{{ user_name }}/.bashrc"
+        owner="{{ user_name }}" group="{{ grp_name }}" mode=0644
+
+- include: tmux.yml
+- include: emacs.yml
+- include: git.yml
+- include: devel.yml
+- include: local_repo.yml

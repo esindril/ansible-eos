@@ -10,6 +10,7 @@
     - openldap-devel
     - ncurses-static
     - curl-devel
+    - jsoncpp-devel
     - libattr-devel
     - libcurl-devel
     - sparsehash-devel

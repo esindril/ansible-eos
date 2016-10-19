@@ -1,2 +1,4 @@
 [all]
-localhost ansible_connection=local
+# localhost ansible_connection=local
+#esdss003.cern.ch   ansible_connection=ssh ansible_user=esindril ansible_ssh_private_key_file=/home/esindril/.ssh/esindril_openstack.pem
+esdss000.cern.ch   ansible_connection=ssh ansible_user=esindril ansible_ssh_private_key_file=/home/esindril/.ssh/esindril_openstack.pem

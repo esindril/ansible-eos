@@ -14,7 +14,7 @@
     - "{{ scripts_dir }}"
 
 - name: create local repository to the YUM repos
-  template: src=localrepo.repo.j2 dest=/etc/yum.repos.d/localrepo.repo
+  template: src=localrepo.repo.j2 dest=/etc/yum.repos.d/localrepo.repo_bkp
             owner=root group=root mode=0644
 
 - name: script to push XRootD rpms to local repository

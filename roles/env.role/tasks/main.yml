@@ -1,6 +1,10 @@
 ---
 # tasks file for env.role
 
+- name: customize the .bash_profilefile
+  copy: src=bash_profile.conf dest="/home/{{ user_name }}/.bash_profile"
+        owner="{{ user_name }}" group="{{ grp_name }}" mode=0644
+
 - name: customize the .bashrc file
   copy: src=bashrc.conf dest="/home/{{ user_name }}/.bashrc"
         owner="{{ user_name }}" group="{{ grp_name }}" mode=0644

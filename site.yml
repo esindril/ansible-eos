@@ -22,10 +22,19 @@
      grp_name: c3
 
 - hosts: all
-  tags: eos
+  tags: eos_dep
   become: true
   roles:
-    - eos.role
+    - eos_dependencies.role
+  vars:
+     user_name: esindril
+     grp_name: c3
+
+- hosts: all
+  tags: eos_instance
+  become: true
+  roles:
+    - eos_instance.role
   vars:
      user_name: esindril
      grp_name: c3
